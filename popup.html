@@ -17,11 +17,6 @@
         font-size: 15px;
       }
 
-      #container {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
     </style>
 
     <!--
@@ -35,16 +30,18 @@
   </head>
 
   <body>
-    <h1>Tweets</h1>
+    <h1>Tweets Tracker</h1>
+    Select a category to see tweets of users<br/><br/>
     <div id="container">
-      <span>Choose a tweet category</span>
+      <span>Tweet category</span>
       <select id="dropdown">
         <option selected disabled hidden value=''></option>
-        <option value="white">Text</option>
-        <option value="pink">Photo</option>
-        <option value="green">Text and Photo</option>
+        <option value="text">Text</option>
+        <option value="photo">Photo</option>
+        <option value="text+and+photo">Text and Photo</option>
       </select>
-      <div id="tweets"></div>
     </div>
+    <br/>
+    <div><button type="button" id="button">Get Tweets</button></div>
   </body>
 </html>
