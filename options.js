@@ -2,7 +2,8 @@ $(function() {
 
   $(document).ready(function() {
 
-    chrome.storage.sync.get(["text","photo","text_and_photo"], function(result){
+    chrome.storage.sync.get(["text","photo","text_and_photo","users"], function(result){
+      $("#followed_users").val(result.users);
       if (result.text) {
         $("#text").prop('checked', true);
       }
@@ -18,6 +19,7 @@ $(function() {
   $("#button").click(function() {
     var users = $("#followed_users").val();
     console.log(users);
+    chrome.storage.sync.set({"users":users});
     var token="";
     chrome.storage.sync.get("tttoken",function(tracker) {
       console.log(tracker.tttoken);

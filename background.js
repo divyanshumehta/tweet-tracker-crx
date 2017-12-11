@@ -50,7 +50,7 @@ $(function(){
 
 
     var count = 1;
-    minute = 60000*5;
+    minute = 60000*30;
     var notifOptions = {
       type: 'basic',
       iconUrl: 'icon.png',
@@ -59,33 +59,41 @@ $(function(){
       requireInteraction: false
     };
 
-    var text = true;
-    var photo = true;
-    var text_and_photo = true;
+    var text = false;
+    var photo = false;
+    var text_and_photo = false;
+
 
     function delay_loop() {
+
       // start a delay
       setTimeout(function(){
 
           console.log("Tweet");
-          // Make an API call to /notify?token=
-          $.ajax({
-    				type: "GET",
-    				url: "http://localhost:3000/notify/?token="+token,
-            // data: {"token":"ab12"},
-    				success: function(result){
-              console.log(result);
-    					if ( (result.text && text) || (result.photo && photo) || (result.text_and_photo && text_and_photo) ) {
-                chrome.notifications.create('tweet',notifOptions);
+          var token = "";
+
+          chrome.storage.sync.get(["tttoken","text","photo","text_and_photo"],function(read) {
+            console.log(read.tttoken);
+            // Make an API call to /notify?token=
+            $.ajax({
+              type: "GET",
+              url: "http://localhost:3000/notify/?token="+read.tttoken,
+              // data: {"token":"ab12"},
+              success: function(result){
+                console.log(result);
+                if ( (result.text && read.text) || (result.photo && read.photo) || (result.text_and_photo && read.text_and_photo) ) {
+                  chrome.notifications.create('tweet',notifOptions);
+                }
+                else{
+                  notify=false;
+                }
+              },
+              error: function(msg){
+                console.log(msg.data);
               }
-    					else{
-                notify=false;
-    					}
-    				},
-            error: function(msg){
-              console.log(msg.data);
-            }
-    			});
+            });
+          });
+
 
           // recursive call
           if (count)
