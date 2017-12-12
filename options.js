@@ -29,7 +29,7 @@ $(function() {
       console.log(token);
       $.ajax({
         type: "POST",
-        url: "https://thawing-hamlet-81545.herokuapp.com//follow/",
+        url: "https://thawing-hamlet-81545.herokuapp.com/follow/",
         data: {"users":users,"token":tracker.tttoken},
         success: function(result){
           console.log(result);

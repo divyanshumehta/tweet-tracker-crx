@@ -27,7 +27,7 @@ $(function(){
 
           $.ajax({
             type: "POST",
-            url: "https://thawing-hamlet-81545.herokuapp.com//new_client",
+            url: "https://thawing-hamlet-81545.herokuapp.com/new_client",
             data: {"token":token},
             success: function(result){
               console.log(result);
@@ -77,7 +77,7 @@ $(function(){
             // Make an API call to /notify?token=
             $.ajax({
               type: "GET",
-              url: "https://thawing-hamlet-81545.herokuapp.com//notify/?token="+read.tttoken,
+              url: "https://thawing-hamlet-81545.herokuapp.com/notify/?token="+read.tttoken,
               // data: {"token":"ab12"},
               success: function(result){
                 console.log(result);
