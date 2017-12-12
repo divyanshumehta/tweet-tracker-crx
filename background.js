@@ -27,7 +27,7 @@ $(function(){
 
           $.ajax({
             type: "POST",
-            url: "http://localhost:3000/new_client",
+            url: "https://thawing-hamlet-81545.herokuapp.com//new_client",
             data: {"token":token},
             success: function(result){
               console.log(result);
@@ -50,7 +50,7 @@ $(function(){
 
 
     var count = 1;
-    minute = 60000*30;
+    minute = 10000*6*5; // notfier scheduled in 5mins
     var notifOptions = {
       type: 'basic',
       iconUrl: 'icon.png',
@@ -77,7 +77,7 @@ $(function(){
             // Make an API call to /notify?token=
             $.ajax({
               type: "GET",
-              url: "http://localhost:3000/notify/?token="+read.tttoken,
+              url: "https://thawing-hamlet-81545.herokuapp.com//notify/?token="+read.tttoken,
               // data: {"token":"ab12"},
               success: function(result){
                 console.log(result);
